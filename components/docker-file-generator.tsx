@@ -19,15 +19,10 @@ const Navbar = () => (
   <nav className="bg-gray-100 p-4">
     <div className="max-w-7xl mx-auto flex justify-between items-center">
       <h1 className="text-black text-xl font-bold">DockerAI</h1>
-      <a 
-        href="https://github.com/tatsu-ai/DockerAI" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="flex items-center text-white bg-black hover:bg-blue-700 font-bold py-2 px-4 rounded"
-      >
-        <Github className="mr-2" />
-        GitHub
-      </a>
+      
+      <Button>
+      <Github className="mr-2" />GitHub
+      </Button>
     </div>
   </nav>
 );
