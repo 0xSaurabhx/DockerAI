@@ -77,7 +77,7 @@ export function DockerFileGeneratorComponent() {
     }
   }
 
-  const getGroqChatCompletion = async (groq, instructions) => {
+  const getGroqChatCompletion = async (groq: Groq, instructions: string) => {
     return groq.chat.completions.create({
       messages: [
         {
@@ -89,7 +89,7 @@ export function DockerFileGeneratorComponent() {
     })
   }
 
-  const getGithubRepoData = async (octokit, owner, repo) => {
+  const getGithubRepoData = async (octokit: Octokit, owner: string, repo: string) => {
     return octokit.request('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', {
       owner,
       repo,
