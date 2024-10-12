@@ -7,12 +7,30 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { AlertCircle } from 'lucide-react'
+import { AlertCircle, Github } from 'lucide-react'
 import Groq from "groq-sdk"
 import { Octokit } from "@octokit/core"
+import '@fontsource/poppins' // Import Poppins font
 
 const GROQ_API_KEY = process.env.NEXT_PUBLIC_GROQ_API_KEY || ''
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || ''
+
+const Navbar = () => (
+  <nav className="bg-gray-100 p-4">
+    <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 className="text-black text-xl font-bold">DockerAI</h1>
+      <a 
+        href="https://github.com/tatsu-ai/DockerAI" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="flex items-center text-white bg-black hover:bg-blue-700 font-bold py-2 px-4 rounded"
+      >
+        <Github className="mr-2" />
+        GitHub
+      </a>
+    </div>
+  </nav>
+);
 
 export function DockerFileGeneratorComponent() {
   const [dockerFile, setDockerFile] = useState('')
@@ -101,78 +119,81 @@ export function DockerFileGeneratorComponent() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-8">
-      <Card>
-        <CardHeader>
-          <CardTitle>DockerAI - Free AI Powered Docker File Generator</CardTitle>
-          <CardDescription>Generate a Dockerfile for your GitHub repository using AI</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="github-owner">GitHub Username</Label>
-              <Input 
-                id="github-owner" 
-                value={githubOwner} 
-                onChange={(e) => setGithubOwner(e.target.value)} 
-                placeholder="e.g., octocat"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="github-repo">GitHub Repository Name</Label>
-              <Input 
-                id="github-repo" 
-                value={githubRepo} 
-                onChange={(e) => setGithubRepo(e.target.value)} 
-                placeholder="e.g., my-project"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="docker-file-instructions">Docker File Instructions</Label>
-            <Textarea 
-              id="docker-file-instructions" 
-              value={dockerFileInstructions} 
-              onChange={(e) => setDockerFileInstructions(e.target.value)} 
-              placeholder="Describe how you want your Dockerfile to be generated..."
-              rows={4}
-            />
-          </div>
-          <Button onClick={handleGenerateDockerFile} disabled={isLoading}>
-            {isLoading ? 'Generating...' : 'Generate Docker File'}
-          </Button>
-          {error && (
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-        </CardContent>
-      </Card>
-      {dockerFile && (
+    <div className="font-poppins">
+      <Navbar />
+      <div className="max-w-4xl mx-auto p-4 space-y-8">
         <Card>
           <CardHeader>
-            <CardTitle>Generated Dockerfile</CardTitle>
+            <CardTitle>DockerAI - Free AI Powered Docker File Generator</CardTitle>
+            <CardDescription>Generate a Dockerfile for your GitHub repository using AI</CardDescription>
           </CardHeader>
-          <CardContent>
-            <Textarea 
-              value={dockerFile} 
-              readOnly 
-              className="font-mono"
-              rows={10}
-            />
-            <a href={downloadUrl} download="Dockerfile">
-              <Button className="mt-4">
-                Download Dockerfile
-              </Button>
-            </a>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="github-owner">GitHub Username</Label>
+                <Input 
+                  id="github-owner" 
+                  value={githubOwner} 
+                  onChange={(e) => setGithubOwner(e.target.value)} 
+                  placeholder="e.g., octocat"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="github-repo">GitHub Repository Name</Label>
+                <Input 
+                  id="github-repo" 
+                  value={githubRepo} 
+                  onChange={(e) => setGithubRepo(e.target.value)} 
+                  placeholder="e.g., my-project"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="docker-file-instructions">Docker File Instructions</Label>
+              <Textarea 
+                id="docker-file-instructions" 
+                value={dockerFileInstructions} 
+                onChange={(e) => setDockerFileInstructions(e.target.value)} 
+                placeholder="Describe how you want your Dockerfile to be generated..."
+                rows={4}
+              />
+            </div>
+            <Button onClick={handleGenerateDockerFile} disabled={isLoading}>
+              {isLoading ? 'Generating...' : 'Generate Docker File'}
+            </Button>
+            {error && (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
           </CardContent>
         </Card>
-      )}
-      <div className="flex justify-center mt-8">
-        <a href="https://www.producthunt.com/posts/dockerai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dockerai" target="_blank">
-          <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=498776&theme=dark" alt="DockerAI - AI&#0032;Dockerfile&#0032;Generator&#0032;&#0091;FREE&#0093; | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
-        </a>
+        {dockerFile && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Generated Dockerfile</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Textarea 
+                value={dockerFile} 
+                readOnly 
+                className="font-mono"
+                rows={10}
+              />
+              <a href={downloadUrl} download="Dockerfile">
+                <Button className="mt-4">
+                  Download Dockerfile
+                </Button>
+              </a>
+            </CardContent>
+          </Card>
+        )}
+        <div className="flex justify-center mt-8">
+          <a href="https://www.producthunt.com/posts/dockerai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dockerai" target="_blank">
+            <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=498776&theme=dark" alt="DockerAI - AI&#0032;Dockerfile&#0032;Generator&#0032;&#0091;FREE&#0093; | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
+          </a>
+        </div>
       </div>
     </div>
   )
