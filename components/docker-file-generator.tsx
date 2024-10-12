@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import React, { useState, useEffect } from 'react'
 import { Input } from "@/components/ui/input"
@@ -85,7 +85,7 @@ export function DockerFileGeneratorComponent() {
           content: instructions,
         },
       ],
-      model: "llama3-8b-8192",
+      model: "llama-3.1-8b-instant",
     })
   }
 
@@ -104,7 +104,7 @@ export function DockerFileGeneratorComponent() {
     <div className="max-w-4xl mx-auto p-4 space-y-8">
       <Card>
         <CardHeader>
-          <CardTitle>AI-Powered Docker File Generator</CardTitle>
+          <CardTitle>DockerAI - Free AI Powered Docker File Generator</CardTitle>
           <CardDescription>Generate a Dockerfile for your GitHub repository using AI</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -169,6 +169,11 @@ export function DockerFileGeneratorComponent() {
           </CardContent>
         </Card>
       )}
+      <div className="flex justify-center mt-8">
+        <a href="https://www.producthunt.com/posts/dockerai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dockerai" target="_blank">
+          <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=498776&theme=dark" alt="DockerAI - AI&#0032;Dockerfile&#0032;Generator&#0032;&#0091;FREE&#0093; | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
+        </a>
+      </div>
     </div>
   )
 }
