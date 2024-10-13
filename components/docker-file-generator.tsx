@@ -21,7 +21,7 @@ const Navbar = () => (
       <h1 className="text-black text-xl font-bold">DockerAI</h1>
       
       <a href="https://github.com/tatsu-ai/DockerAI" target="_blank" rel="noopener noreferrer">
-        <Button className="bg-blue-500 hover:bg-blue-700 text-[hsl(0,0%,100%)]">
+        <Button className="bg-black text-[hsl(0,0%,100%)]">
           <Github className="mr-2" />GitHub
         </Button>
       </a>
