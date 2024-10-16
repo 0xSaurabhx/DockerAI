@@ -20,7 +20,7 @@ const Navbar = () => (
     <div className="max-w-7xl mx-auto flex justify-between items-center">
       <h1 className="text-black text-xl font-bold">DockerAI</h1>
       
-      <a href="https://github.com/tatsu-ai/DockerAI" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/devs-org-in/DockerAI" target="_blank" rel="noopener noreferrer">
         <Button className="bg-black text-[hsl(0,0%,100%)]">
           <Github className="mr-2" />GitHub
         </Button>
