@@ -11,6 +11,7 @@ import { AlertCircle, Github } from 'lucide-react'
 import Groq from "groq-sdk"
 import { Octokit } from "@octokit/core"
 import '@fontsource/poppins' // Import Poppins font
+import { Analytics } from "@vercel/analytics/react"
 
 const GROQ_API_KEY = process.env.NEXT_PUBLIC_GROQ_API_KEY || ''
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || ''
@@ -117,6 +118,7 @@ export function DockerFileGeneratorComponent() {
 
   return (
     <div className="font-poppins">
+      <Analytics/>
       <Navbar />
       <div className="max-w-4xl mx-auto p-4 space-y-8">
         <Card>
